@@ -13,6 +13,7 @@ n_frames = ceil((length(input_signal))/frame_length);
 zer = n_frames * frame_length - length(input_signal);
 input_signal = [input_signal zeros(1,zer)];
 
+fprintf(2, 'apcm of x:%d samples every %d with c:%.2f\n', length(x), fr_len,c);
 cnt = 1;
 pin = 0; pout = 0;
 output_signal = zeros(size(input_signal));
@@ -42,7 +43,7 @@ while pin+frame_length <= length(input_signal)
     cnt = cnt + 1;
 end
 
-snr = 10*log( sum(input_signal.^2) / sum((input_signal-output_signal).^2) );
+snr = 10*log10( sum(input_signal.^2) / sum((input_signal-output_signal).^2) );
 
 y = output_signal;
 

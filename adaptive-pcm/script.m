@@ -20,6 +20,8 @@ input_signal = wav';
 frame_duration = 15; % ms
 frame_length = fs * frame_duration/1000;
 
+% frame_length = length(input_signal); frame_duration = frame_length/fs*1000;
+
 snr_log_2 = [];
 
 m = 1:5;
@@ -33,10 +35,10 @@ for c = n
     [output_signal, snr] = apcm(input_signal, frame_length, nbits, c);
     snr_log = [snr_log snr];
 
-    figure(2);
-    frame_plot = 175;
-    range = 1 + frame_length * frame_plot : frame_length * (frame_plot+1);
-    plot(range,input_signal(range),range,output_signal(range));
+%     figure(2);
+%     frame_plot = 175;
+%     range = 1 + frame_length * frame_plot : frame_length * (frame_plot+1);
+%     plot(range,input_signal(range),range,output_signal(range));
     
     %pause(.05);
 end
